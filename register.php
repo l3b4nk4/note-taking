@@ -14,6 +14,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $errors[] = "All fields are required";
     }
     
+    if (!preg_match('/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i', $email)) {
+    $errors[] = "Enter a valid email";
+    }
+    
     if ($password !== $confirm_password) {
         $errors[] = "Passwords do not match";
     }
@@ -46,6 +50,7 @@ if (isLoggedIn()) {
     <title>Register - NoteTaking</title>
     <link rel="stylesheet" href="assets/style.css">
 </head>
+
 <body id="auth">
     <div class="container">
         <div class="card">
